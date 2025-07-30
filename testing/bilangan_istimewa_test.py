@@ -1,5 +1,3 @@
-import numpy as np
-import pytest
 from OpenSeries.bilangan_istimewa import angka_armstrong
 
 

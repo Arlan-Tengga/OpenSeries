@@ -13,7 +13,7 @@ from typing import Optional, Union
 # mocking modul warna jika error import
 try:
     from util import constant as warna
-except ImportError as error:
+except ImportError:
     # mocking object jika module warna tidak tersedia
     class MockWarna:
         """mock class untuk warna jika modul gagal import"""

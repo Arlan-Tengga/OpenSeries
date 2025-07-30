@@ -78,7 +78,7 @@ def angka_pronic(angka: int) -> Union[str, ErrorTipeData]:
     benar, bukan = "angka pronic", "bukan angka pronic"
     # cek dari tipe data angka
     if not isinstance(angka, int):
-        return error.ErrorTipeData(["int"])
+        return ErrorTipeData(["int"])
     if angka < 0 or angka % 2 == 1:
         return bukan.capitalize()
     angka_pangkat = int(angka**0.5)
@@ -103,7 +103,7 @@ def angka_segitiga(angka: int) -> Union[int, ErrorTipeData, Error]:
     """
     # jika tipe data dari angka tidak integer
     if not isinstance(angka, int):
-        return error.ErrorTipeData(["int"])
+        return ErrorTipeData(["int"])
     # jika value dari angka diisi nilai negatif
     if angka < 0:
         return Error("angka tidak boleh negatif")
