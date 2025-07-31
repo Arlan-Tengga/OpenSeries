@@ -1,32 +1,57 @@
-from OpenSeries.util import error as error
+import numpy
+from .util import error as error
 from typing import Union
+from .fisika_calc import kecepatan_calc
 
 
 def kecepatan(
-    jarak: Union[float, int], waktu: Union[float, int]
-) -> Union[float, error.ErrorDibagiNol, error.ErrorTipeData]:
+    jarak: Union[float, int, list[Union[float, int]], numpy.ndarray],
+    waktu: Union[float, int, list[Union[float, int]], numpy.ndarray],
+) -> Union[
+    float,
+    list[Union[float, error.ErrorDibagiNol, error.ErrorTipeData, error.Error]],
+    error.ErrorDibagiNol,
+    error.ErrorTipeData,
+    error.Error,
+]:
     """
-    fungsi untuk menghitung kecepatan
+    fungsi menghitung kecepatan benda antara satu dan lainnya
 
     Parameter:
-        jarak (float atau int): jarak tempuh
-        waktu (float atau int): waktu tempuh (sekon)
+        jarak (list, numpy.ndarray, float, int): jarak yang ditempuh
+        waktu (list, numpy.ndarray, float, int): waktu yang ditempuh
 
     Return:
-        float: hasil dari jarak / waktu
-        error.ErrorTipeData: error jika tipe data data salah
-        error.ErrorDibagiNol: error jika angka dibagikan dengan 0
+        (list, numpy.ndarray, float, int): hasil perhitungan antara jarak dan waktu
+            menggunakan pendekatan rumus v = s / t
+
+    Example:
+
+    >>> kecepatan(100, 10)
+    10.0
+
+    >>> kecepatan([100, 200, 300], [10, 20, 30])
+    [10.0, 10.0, 10.0]
+
+    >>> import numpy as np
+    >>> kecepatan(np.array([100, 20]), np.array([10, 20]))
+    [10.0, 10.0]
     """
-    # mengecek apakah variable tersebut bertipe data int atau float
-    # jika tidak maka error
-    if all(isinstance(data, (float, int)) for data in [jarak, waktu]):
-        try:
-            return jarak / waktu
-        except ZeroDivisionError:
-            # error jika hasil pembagian dibagikan dengan 0
-            return error.ErrorDibagiNol()
+    processor = kecepatan_calc.KecepatanService.get_instance()
+    if isinstance(jarak, (int, float, numpy.integer, numpy.floating)) and isinstance(
+        waktu, (int, float, numpy.integer, numpy.floating)
+    ):
+        return processor.hitung_single(jarak, waktu)
+    elif isinstance(jarak, (list, numpy.ndarray)) and isinstance(
+        waktu, (list, numpy.ndarray)
+    ):
+        return processor.hitung_multiple(jarak, waktu)
     else:
-        return error.ErrorTipeData(["int", "float"])
+        return error.ErrorTipeData(
+            tipe_diharapkan=["sama-sama single atau sama-sama vektor"],
+            tipe_sebenarnya=f"jarak: {type(jarak).__name__}, waktu: {type(waktu).__name__}",
+            nama_parameter="jarak dan waktu",
+        )
 
 
 def percepatan(
