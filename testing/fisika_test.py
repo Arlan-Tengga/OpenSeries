@@ -130,151 +130,166 @@ class TestEfekDoppler(unittest.TestCase):
         with self.assertRaises(error.Error):
             raise hasil
 
+
 class TestCelciusFarenheit(unittest.TestCase):
     def test_CelciusFarenheit(self):
         hasil = fisika.celcius_farenheit(0)
         rounding_hasil = round(hasil)
         self.assertEqual(rounding_hasil, 32)
-    
+
     def test_CelciusFarenheit_invalid_tipe_data(self):
         hasil = fisika.celcius_farenheit("0")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestFarenheitCelcius(unittest.TestCase):
     def test_FarenheitCelcius(self):
         hasil = fisika.farenheit_celcius(32)
         rounding_hasil = round(hasil)
-        self.assertEqual(rounding_hasil,0)
+        self.assertEqual(rounding_hasil, 0)
 
     def test_FarenheitCelcius_invalid_tipe_data(self):
         hasil = fisika.farenheit_celcius("32")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
-        
+
+
 class TestCelciusReamur(unittest.TestCase):
     def test_CelciusReamur(self):
         hasil = fisika.celcius_reaumur(32)
-        self.assertEqual(hasil,25.6)
+        self.assertEqual(hasil, 25.6)
 
     def test_CelciusReamur_invalid_tipe_data(self):
         hasil = fisika.farenheit_celcius("32")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestReamurCelcius(unittest.TestCase):
     def test_ReamurCelcius(self):
         hasil = fisika.reamur_celcius(32)
-        self.assertEqual(hasil,40)
+        self.assertEqual(hasil, 40)
 
     def test_ReamurCelcius_invalid_tipe_data(self):
         hasil = fisika.farenheit_celcius("32")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestCelciusKelvin(unittest.TestCase):
     def test_CelciusKelvin(self):
         hasil = fisika.celcius_kelvin(0)
-        self.assertEqual(hasil,273.15)
+        self.assertEqual(hasil, 273.15)
 
     def test_CelciusKelvin_invalid_tipe_data(self):
         hasil = fisika.farenheit_celcius("0")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestKelvinCelcius(unittest.TestCase):
     def test_KelvinCelcius(self):
         hasil = fisika.kelvin_celcius(273.15)
-        self.assertEqual(hasil,0)
-    
-    def test_kelvin(self):
-        hasil = fisika.kelvin_celcius(-1)
-        with self.assertRaises(error.ErrorKelvinValue):
+        self.assertEqual(hasil, 0)
+
+    def test_kelvin_nilai_negatif(self):
+        hasil = fisika.kelvin_celcius(-10)
+        self.assertIsInstance(hasil, error.Error)
+        with self.assertRaises(error.Error):
             raise hasil
 
     def test_KelvinCelcius_invalid_tipe_data(self):
         hasil = fisika.kelvin_celcius("273.15")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestKelvinFarenheit(unittest.TestCase):
     def test_KelvinFarenheit(self):
         hasil = fisika.kelvin_fahrenheit(300)
-        self.assertEqual(hasil,80.32999999999998)
+        self.assertEqual(hasil, 80.32999999999998)
 
-    def test_kelvin(self):
-        hasil = fisika.kelvin_celcius(-1)
-        with self.assertRaises(error.ErrorKelvinValue):
+    def test_kelvin_nilai_negatif(self):
+        hasil = fisika.kelvin_fahrenheit(-10)
+        self.assertIsInstance(hasil, error.Error)
+        with self.assertRaises(error.Error):
             raise hasil
 
     def test_KelvinFarenheit_invalid_tipe_data(self):
         hasil = fisika.kelvin_fahrenheit("0")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
- 
+
+
 class TestFarenheitKelvin(unittest.TestCase):
     def test_FarenheitKelvin(self):
         hasil = fisika.fahrenheit_kelvin(-459.67)
-        self.assertEqual(hasil,0)
+        self.assertEqual(hasil, 0)
 
     def test_FarenheitKelvin_invalid_tipe_data(self):
         hasil = fisika.fahrenheit_kelvin("-459.67")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
-        
+
+
 class TestKelvinReamur(unittest.TestCase):
     def test_KelvinReamur(self):
         hasil = fisika.kelvin_reamur(300)
-        self.assertEqual(hasil,21.480000000000018)
-    
-    def test_kelvin(self):
-        hasil = fisika.kelvin_celcius(-1)
-        with self.assertRaises(error.ErrorKelvinValue):
+        self.assertEqual(hasil, 21.480000000000018)
+
+    def test_kelvin_nilai_negatif(self):
+        hasil = fisika.kelvin_reamur(-10)
+        self.assertIsInstance(hasil, error.Error)
+        with self.assertRaises(error.Error):
             raise hasil
 
     def test_KelvinReamur_invalid_tipe_data(self):
         hasil = fisika.kelvin_reamur("300")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
- 
+
+
 class TestReamurKelvin(unittest.TestCase):
     def test_ReamurKelvin(self):
         hasil = fisika.reamur_kelvin(0)
-        self.assertEqual(hasil,273.15)
+        self.assertEqual(hasil, 273.15)
 
     def test_ReamurFahrenheit_invalid_tipe_data(self):
         hasil = fisika.reamur_fahrenheit("-218.52")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestReamurFahrenheit(unittest.TestCase):
     def test_ReamurFahrenheit(self):
         hasil = fisika.reamur_fahrenheit(0)
-        self.assertEqual(hasil,32)
+        self.assertEqual(hasil, 32)
 
     def test_ReamurFahrenheit_invalid_tipe_data(self):
         hasil = fisika.reamur_fahrenheit("0")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
+
 
 class TestFahrenheitReamur(unittest.TestCase):
     def test_FahrenheitReamur(self):
         hasil = fisika.fahrenheit_reamur(40)
-        self.assertEqual(hasil,3.5555555555555554)
-    
+        self.assertEqual(hasil, 3.5555555555555554)
+
     def test_FahrenheitReamur_invalid_tipe_data(self):
         hasil = fisika.fahrenheit_reamur("0")
-        self.assertIsInstance(hasil,error.ErrorTipeData)
+        self.assertIsInstance(hasil, error.ErrorTipeData)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
