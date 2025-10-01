@@ -408,7 +408,6 @@ def kelvin_fahrenheit(kelvin: Union[int, float]) -> Union[int, float, error.Erro
     else:
         return kelvin * (9 / 5) - 459.67
 
-
 def fahrenheit_kelvin(fahrenheit: Union[int, float]) -> Union[int, float]:
     """
     mengubah fahrenheit ke kelvin
@@ -485,7 +484,6 @@ def reamur_fahrenheit(reamur: Union[int, float]) -> Union[int, float]:
         return error.ErrorTipeData(["float", "int"])
     else:
         return (reamur * (9 / 4)) + 32
-
 
 def fahrenheit_reamur(fahrenheit: Union[int, float]) -> Union[int, float]:
     """
