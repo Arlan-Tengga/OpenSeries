@@ -268,3 +268,237 @@ def efek_doppler(
             "frekuensi tidak positif, kecepatan sumber relatif lebih besar dari kecepatan gelombang dalam medium"
         )
     return doppler
+
+
+def celcius_farenheit(celcius: Union[int, float]) -> Union[float, int]:
+    """
+    mengubah nilai celcius ke farenheit
+
+    Paramieter:
+        celcius (float atau int): nilai celcius
+
+    Return:
+        (float atau int): hasil dari kalkulasi celcius ke farenheit
+        error.ErrorTipeData: error jika tipe data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(celcius, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return celcius * (9 / 5) + 32
+
+
+def farenheit_celcius(farenheit: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah nilai farenheit ke celcius
+
+    Parameter:
+        farenheit(int atau float): nilai farenheit
+
+    Return:
+        (float atau int): hasil dari kalkulasi farenheit ke celcius
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(farenheit, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return (farenheit - 32) * (5 / 9)
+
+
+def celcius_reaumur(celcius: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah nilai celcius ke reaumur
+
+    Parameter:
+        celcius(int atau float): nilai celcius
+
+    Return:
+        (float atau int): hasil dari kalkulasi celcius ke reaumur
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(celcius, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return celcius*(4/5)
+
+
+def reamur_celcius(reamur: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah nilai reamur ke celcius
+
+    Parameter:
+        reamur(int atau float): nilai reamur
+
+    Return:
+        (float atau int): hasil dari kalkulasi celcius ke reamur
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(reamur, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return reamur*(5/4)
+
+
+def celcius_kelvin(celcius: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah nilai celcius ke reaumur
+
+    Parameter:
+        celcius(int atau float): nilai celcius
+
+    Return:
+        (float atau int): hasil dari kalkulasi celcius ke kelvin
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(celcius, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return celcius + 273.15
+
+
+def kelvin_celcius(kelvin: Union[int, float]) -> Union[int, float,error.ErrorKelvinValue]:
+    """
+    mengubah celcius ke kelvin
+
+    Parameter:
+        kelvin(int atau float): nilai kelvin
+
+    Return:
+        (float atau int): hasil dari kalkulasi kelvin ke celcius
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(kelvin, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    elif kelvin < 0:
+        return error.ErrorKelvinValue
+    else:
+        return 273.15 - kelvin
+
+
+def kelvin_fahrenheit(kelvin: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah kelvin ke fahrenheit
+
+    Parameter:
+        kelvin(int atau float): nilai kelvin
+
+    Return:
+        (float atau int): hasil dari kalkulasi kelvin ke fahrenheit
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(kelvin, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    elif kelvin < 0:
+        return error.ErrorKelvinValue
+    else:
+        return kelvin * (9 / 5) - 459.67
+
+
+def fahrenheit_kelvin(fahrenheit: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah fahrenheit ke kelvin
+
+    Parameter:
+        fahrenheit(int atau float): nilai fahrenheit
+
+    Return:
+        (float atau int): hasil dari kalkulasi fahrenheit ke kelvin
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(fahrenheit, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return (fahrenheit + 459.67) * (5 / 9)
+
+
+def kelvin_reamur(kelvin: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah kelvin ke reamur
+
+    Parameter:
+        kelvin(int atau float): nilai kelvin
+
+    Return:
+        (float atau int): hasil dari kalkulasi kelvin ke reamur
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(kelvin, (float, int)):
+        return error.ErrorTipeData(["int", "float"])
+    elif kelvin < 0:
+        return error.ErrorKelvinValue
+    else:
+        return (kelvin - 273.15) *(4/5)
+
+
+def reamur_kelvin(reamur: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah reamur ke kelvin
+
+    Parameter:
+        reamur(int atau float): nilai reamur
+
+    Return:
+        (float atau int): hasil dari kalkulasi reamur ke kelvin
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(reamur, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return (reamur * (5/4)) + 273.15
+
+
+def reamur_fahrenheit(reamur: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah reamur ke fahrenheit
+
+    Parameter:
+        reamur(int atau float): nilai reamur
+
+    Return:
+        (float atau int): hasil dari kalkulasi reamur ke fahrenheit
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(reamur, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return (reamur*(9/4)) + 32
+
+
+def fahrenheit_reamur(fahrenheit: Union[int, float]) -> Union[int, float]:
+    """
+    mengubah fahrenheit ke reamur
+
+    Parameter:
+        fahrenheit(int atau float): nilai fahrenheit
+
+    Return:
+        (float atau int): hasil dari kalkulasi fahrenheit ke reamur
+        errot.ErrorTiperData: error jika data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if not isinstance(fahrenheit, (float, int)):
+        return error.ErrorTipeData(["float", "int"])
+    else:
+        return (fahrenheit - 32)*(4/9)

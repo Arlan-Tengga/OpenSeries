@@ -36,7 +36,6 @@ class ErrorTipeData(TypeError):
         tipe_str = " atau ".join(map(str, tipe_data))
         return f"{warna.red}Error Tipe Data:{warna.reset_warna} tipe data harus {tipe_str}!"
 
-
 class Error(Exception):
     """
     Kelas untuk membuat kostumisasi error
@@ -69,7 +68,6 @@ class ErrorValue(ValueError):
         message = f"{warna.red}Error Value:{warna.reset_warna} {pesan}"
         super().__init__(message)
 
-
 class ErrorDibagiNol(ZeroDivisionError):
     """
     Kelas untuk menampilkan error yang tidak bisa dibagi dengan nol
@@ -79,3 +77,17 @@ class ErrorDibagiNol(ZeroDivisionError):
         super().__init__(
             f"{warna.red}Error Dibagi Nol:{warna.reset_warna} Tidak bisa dibagi dengan nol"
         )
+
+class ErrorKelvinValue(ValueError):
+    """
+    kelas untuk membuat error dari nilai Kelvin
+
+    Parameter:
+        expected_value (int): nilai yang dimasukkan
+
+    Return:
+        (int) : Nilai tidak boleh lebih kecil dari nol
+    """
+    def __init__(self):
+        message = f"{warna.red}Error Value:{warna.reset_warna} Nilai tidak boleh kurang dari nol"
+        super().__init__(message)
