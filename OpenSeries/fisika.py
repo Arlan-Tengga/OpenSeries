@@ -112,7 +112,7 @@ def masa_jenis(
         volume (float atau int): volume benda
 
     Return:
-        (int, flloat): hasil dari kalkulasi fungsi dari masa jenis
+        (int, float): hasil dari kalkulasi fungsi dari masa jenis
         error.ErrorTipeData: error jika tipe data data salah
         error.ErrorDibagiNol: error jika angka dibagikan dengan 0
     """
@@ -124,6 +124,164 @@ def masa_jenis(
         except ZeroDivisionError:
             # error jika hasil pembagian dibagikan dengan 0
             return error.ErrorDibagiNol()
+    else:
+        return error.ErrorTipeData(["int", "float"])
+
+
+def kecepatan_sudut(
+    sudut: Union[int, float], time: Union[int, float]
+) -> Union[int, float, error.ErrorTipeData, error.ErrorDibagiNol]:
+    """
+    Menghitung kecepatan sudut
+
+    Parameter:
+        sudut (float atau int): sudut tempuh benda
+        time (float atau int): waktu tempuh benda
+
+    Return:
+        (int,float): hasil dari kalkulasi fungsi kecepatan sudut
+        error.ErrorTipeData : error jika tipe data salah
+        error.ErrorDibagiNol: error jika angka dibagikan dengan 0
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if all(isinstance(data, (float, int)) for data in [sudut, time]):
+        try:
+            return sudut / time
+        except ZeroDivisionError:
+            return error.ErrorDibagiNol()
+    else:
+        return error.ErrorTipeData(["int", "float"])
+
+
+def percepatan_sudut(
+    w_sudut: Union[int, float], time: Union[int, float]
+) -> Union[int, float, error.ErrorTipeData, error.ErrorDibagiNol]:
+    """
+    Menghitung percepatan sudut
+
+    Parameter:
+        w_sudut (int atau float) : kecepatan sudut
+        time    (int atau float) : waktu
+
+    Return:
+        (int,float): hasil dari kalkulasi fungsi percepatan sudut
+        error.ErrorTipeData : error jika tipe data salah
+        error.DibagiNol : error jika angka dibagikan dengan 0
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if all(isinstance(data, (float, int)) for data in [w_sudut, time]):
+        try:
+            return w_sudut / time
+        except ZeroDivisionError:
+            return error.ErrorDibagiNol()
+    else:
+        return error.ErrorTipeData(["int", "float"])
+
+
+def percepatan_sentripetal_linear(
+    kecepatan: Union[int, float], jari_jari: Union[int, float]
+) -> Union[int, float, error.ErrorTipeData, error.ErrorDibagiNol]:
+    """
+    Menghitung percepatan sentripetal linear
+
+    Parameter :
+        kecepatan (int,float) : kecepatan
+        jari_jari (int,float) : jari-jari lintasan
+    Return :
+        (int,float) : hasil kalkulasi percepatan sentripetal linear
+        error.ErrorTipeData : error jika tipe data salah
+        error.ErrorDibagiNol : error jika dibagi dengan nol
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if all(isinstance(data, (float, int)) for data in [kecepatan, jari_jari]):
+        try:
+            return kecepatan**2 / jari_jari
+        except ZeroDivisionError:
+            return error.ErrorDibagiNol()
+    else:
+        return error.ErrorTipeData(["int", "float"])
+
+
+def percepatan_sentripetal_sudut(
+    jari_jari: Union[int, float], kecepatan_sudut: Union[int, float]
+) -> Union[int, float, error.ErrorTipeData]:
+    """
+    Menghitung percepatan sentripetal sudut
+
+    Parameter :
+        kecepatan_sudut (int,float) : kecepatan sudut
+        jari_jari (int,float) : jari-jari lintasan
+    Return :
+        (int,float) : hasil kalkulasi percepatan sentripetal sudut
+        error.ErrorTipeData : error jika tipe data salah
+    """
+    # mengecek apakah variable tersebut bertipe data int atau float
+    # jika tidak maka error
+    if all(isinstance(data, (int, float)) for data in [kecepatan_sudut, jari_jari]):
+        return jari_jari * (kecepatan_sudut**2)
+    else:
+        return error.ErrorTipeData(["int", "float"])
+
+
+def gerak_melingkar_beraturan(
+    w_awal: Union[int, float], a_sudut: Union[int, float], t: Union[int, float]
+) -> Union[int, float, error.Error, error.ErrorTipeData]:
+    """
+    menghitung hasil dari gerak melingkar beraturan
+
+    Parameter:
+        w_awal (float atau int) : kecepatan sudut awal
+        a_sudur (float atau int): percepatan sudut
+    Return:
+        (int atau float) : hasil kalkulasi dari gerak melingkar beraturan
+        error.ErrorTipeData : error jika tipe data salah
+        error.Errorvalue : error jika waktu kurang dari 0
+    """
+    if all(isinstance(data, (int, float)) for data in [w_awal, a_sudut, t]):
+        return w_awal + a_sudut * t
+    else:
+        return error.ErrorTipeData(["Tipe data tidak sesuai"])
+
+
+def inersia(
+    m: Union[float, int], r: Union[float, int]
+) -> Union[float, int, error.Error, error.ErrorTipeData]:
+    """
+    Menghitung inersia dari suatu benda
+
+    Parameter:
+        m (float atau int): massa benda
+        r (float atau int): jari-jari
+
+    Return:
+        (int atau float) : hasil dari kalkulasi fungsi inersia
+        error.ErrorValue : error jika massa kurang dari 0
+        error.ErrorTipeData : error jika tipe data salah
+    """
+    if all(isinstance(data, (float, int)) for data in [m, r]):
+        return m * (r**2)
+    else:
+        return error.ErrorTipeData(["int", "float"])
+
+
+def energi_kinetik_rotasi(
+    inersia: Union[float, int], kecepatan_sudut: Union[int, float]
+) -> Union[int, float, error.ErrorTipeData]:
+    """
+    menghitung energi kinetik rotasi
+
+    Parameter:
+        inersia (float atau int): inersia benda
+        kecepatan_sudut (float atau int): kecepatan benda
+    Return:
+        (int atau float) : hasil kalkulasi dari energi kinetik rotasi
+        error.ErrorTipeData : error jika tipe data salah
+    """
+    if all(isinstance(data, (float, int)) for data in [inersia, kecepatan_sudut]):
+        return (1 / 2) * inersia * (kecepatan_sudut**2)
     else:
         return error.ErrorTipeData(["int", "float"])
 
@@ -408,6 +566,7 @@ def kelvin_fahrenheit(kelvin: Union[int, float]) -> Union[int, float, error.Erro
     else:
         return kelvin * (9 / 5) - 459.67
 
+
 def fahrenheit_kelvin(fahrenheit: Union[int, float]) -> Union[int, float]:
     """
     mengubah fahrenheit ke kelvin
@@ -484,6 +643,7 @@ def reamur_fahrenheit(reamur: Union[int, float]) -> Union[int, float]:
         return error.ErrorTipeData(["float", "int"])
     else:
         return (reamur * (9 / 4)) + 32
+
 
 def fahrenheit_reamur(fahrenheit: Union[int, float]) -> Union[int, float]:
     """

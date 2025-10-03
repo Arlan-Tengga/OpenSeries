@@ -39,13 +39,94 @@ class TestPercepatan(unittest.TestCase):
             raise hasil
 
 
+class TestKecepatanSudut(unittest.TestCase):
+    def test_kecepatan_sudut_valid(self):
+        hasil = fisika.kecepatan_sudut(30, 2)
+        self.assertEqual(hasil, 15)
+
+    def test_kecepatan_sudut_dibagi_nol(self):
+        hasil = fisika.kecepatan_sudut(30.0, 0)
+        with self.assertRaises(error.ErrorDibagiNol):
+            raise hasil
+
+    def test_kecepatan_sudut_tidak_valid(self):
+        hasil = fisika.kecepatan_sudut("30.0", 2)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
+class TestPercepatanSudut(unittest.TestCase):
+    def test_percepatan_sudut_valid(self):
+        hasil = fisika.percepatan_sudut(50, 2)
+        self.assertEqual(hasil, 25)
+
+    def test_percepatan_sudut_dibagi_nol(self):
+        hasil = fisika.percepatan_sudut(50.0, 0)
+        with self.assertRaises(error.ErrorDibagiNol):
+            raise hasil
+
+    def test_percepatan_sudut_tidak_valid(self):
+        hasil = fisika.percepatan_sudut("50.0", 2)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
+class TestPercepatanSentripetallinear(unittest.TestCase):
+    def test_percepatanSentripetal_linear_valid(self):
+        hasil = fisika.percepatan_sentripetal_linear(5.0, 2)
+        self.assertEqual(hasil, 12.5)
+
+    def test_percepatan_sudut_dibagi_nol(self):
+        hasil = fisika.percepatan_sudut(50.0, 0)
+        with self.assertRaises(error.ErrorDibagiNol):
+            raise hasil
+
+    def test_percepatan_sudut_tidak_valid(self):
+        hasil = fisika.percepatan_sudut("50.0", 2)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
+class TestPercepatanSentripetalSudut(unittest.TestCase):
+    def test_percepatansentripetal_sudut_valid(self):
+        hasil = fisika.percepatan_sentripetal_sudut(5, 8)
+        self.assertEqual(hasil, 320)
+
+    def test_percepatan_sudut_tidak_valid(self):
+        hasil = fisika.percepatan_sentripetal_sudut("5", 8)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
 class TestGerakLurusBeraturan(unittest.TestCase):
     def test_valid(self):
         hasil = fisika.gerak_lurus_beraturan(10.0, 2.0, 3.0)
-        self.assertAlmostEqual(hasil, 39.0, places=2)
+        self.assertAlmostEqual(hasil, 39.0)
 
     def test_invalid_int(self):
         hasil = fisika.gerak_lurus_beraturan(8, 1.5, 2)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
+class TesGerakMelingkarBeraturan(unittest.TestCase):
+    def test_valid(self):
+        hasil = fisika.gerak_melingkar_beraturan(5, 6, 3)
+        self.assertAlmostEqual(hasil, 23)
+
+    def test_invalid(self):
+        hasil = fisika.gerak_melingkar_beraturan("5", "6", 3)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
+class TestInersia(unittest.TestCase):
+    def test_valid(self):
+        hasil = fisika.inersia(2, 4)
+        self.assertAlmostEqual(hasil, 32)
+
+    def test_invalid(self):
+        hasil = fisika.inersia("2", 4)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
 
@@ -57,6 +138,17 @@ class TestEnergiKinetik(unittest.TestCase):
 
     def test_invalid_input_mix_tipe_data(self):
         hasil = fisika.energi_kinetik("3", 4.5)
+        with self.assertRaises(error.ErrorTipeData):
+            raise hasil
+
+
+class TestEnergiKinetikRotasi(unittest.TestCase):
+    def test_valid(self):
+        hasil = fisika.energi_kinetik_rotasi(2, 6)
+        self.assertAlmostEqual(hasil, 36)
+
+    def test_invalid(self):
+        hasil = fisika.energi_kinetik_rotasi("2", 6)
         with self.assertRaises(error.ErrorTipeData):
             raise hasil
 
