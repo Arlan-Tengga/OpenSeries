@@ -1,11 +1,12 @@
+import numpy as np
 import unittest
-from OpenSeries import fisika as fisika
-from OpenSeries.util import error as error
+
+from OpenSeries.fisika import kecepatan
 
 
 class TestKecepatan(unittest.TestCase):
     def test_angka_valid(self):
-        hasil = fisika.kecepatan(100.0, 10.0)
+        hasil = kecepatan(100.0, 10.0)
         self.assertEqual(hasil, 10.0)
 
     def test_dibagi_nol(self):
